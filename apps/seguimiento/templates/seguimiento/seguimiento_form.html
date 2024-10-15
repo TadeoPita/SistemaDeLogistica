@@ -1,0 +1,16 @@
+
+{% block title %}Seguimiento de Envío{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Seguimiento de Envío</h2>
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.codigo_seguimiento.label_tag }}
+            {{ form.codigo_seguimiento }}
+        </div>
+        <button type="submit" class="btn btn-primary">Consultar</button>
+    </form>
+</div>
+{% endblock %}

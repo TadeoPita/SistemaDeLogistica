@@ -1,0 +1,24 @@
+
+{% block title %}Detalle de Envío{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Estado del Envío</h2>
+    <div class="card mt-4">
+        <div class="card-header">
+            Orden {{ orden.id }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Estado: {{ orden.envio.estado }}</h5>
+            <p class="card-text">Fecha de Envío: {{ orden.envio.fecha_envio|date:"d/m/Y H:i" }}</p>
+            <p class="card-text">Fecha de Entrega: {{ orden.envio.fecha_entrega|date:"d/m/Y H:i" }}</p>
+            <h5>Detalles de la Orden:</h5>
+            <ul>
+                {% for detalle in orden.detalles.all %}
+                <li>{{ detalle.producto.nombre }} - Cantidad: {{ detalle.cantidad }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
