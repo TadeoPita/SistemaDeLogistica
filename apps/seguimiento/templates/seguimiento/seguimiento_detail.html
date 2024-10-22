@@ -1,23 +1,94 @@
 
-{% block title %}Detalle de Envío{% endblock %}
-
+{% extends 'base.html' %}
 {% block content %}
-<div class="container mt-5">
-    <h2 class="text-center">Estado del Envío</h2>
-    <div class="card mt-4">
-        <div class="card-header">
-            Orden {{ orden.id }}
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Estado: {{ orden.envio.estado }}</h5>
-            <p class="card-text">Fecha de Envío: {{ orden.envio.fecha_envio|date:"d/m/Y H:i" }}</p>
-            <p class="card-text">Fecha de Entrega: {{ orden.envio.fecha_entrega|date:"d/m/Y H:i" }}</p>
-            <h5>Detalles de la Orden:</h5>
-            <ul>
-                {% for detalle in orden.detalles.all %}
-                <li>{{ detalle.producto.nombre }} - Cantidad: {{ detalle.cantidad }}</li>
-                {% endfor %}
-            </ul>
+
+
+<style>
+    body {
+        background: black;
+    }
+
+    * {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: white;
+        font-size: 21px;
+    }
+
+    .container {
+        border: solid rgba(255, 255, 255, 0.708);
+        background: rgb(45, 13, 59);
+        border-radius: 20px;
+        text-align: center;
+        width: 450px;
+        height: auto;
+        padding: 10px;
+
+        --white: hsl(0, 0%, 100%);
+        --black: hsl(240, 15%, 9%);
+        --paragraph: hsl(0, 0%, 83%);
+        --line: hsl(240, 9%, 17%);
+        --primary: hsl(189, 92%, 58%);
+        position: relative;
+
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        padding: 1rem;
+        width: 19rem;
+        background-color: hsla(240, 15%, 9%, 1);
+        background-image: radial-gradient(at 88% 40%,
+                hsla(240, 15%, 9%, 1) 0px,
+                transparent 85%),
+            radial-gradient(at 49% 30%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
+            radial-gradient(at 14% 26%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
+            radial-gradient(at 0% 64%, hsl(189, 99%, 26%) 0px, transparent 85%),
+            radial-gradient(at 41% 94%, hsl(189, 97%, 36%) 0px, transparent 85%),
+            radial-gradient(at 100% 99%, hsl(188, 94%, 13%) 0px, transparent 85%);
+
+        border-radius: 1rem;
+        box-shadow: 0px -16px 24px 0px rgba(28, 202, 255, 0.25) inset;
+    }
+
+    .flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    h2,
+    h5 {
+        font-size: 25px;
+        font-weight: 800;
+    }
+
+    li {
+        list-style: none;
+        margin-left: -27px;
+    }
+</style>
+<header>
+
+</header>
+<div class="flex">
+    <div class="container mt-5">
+        <h2 class="text-center">Estado del Envío</h2>
+        <div class="card mt-4">
+            <div class="card-header">
+                Orden {{ orden.id }}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Estado: {{ orden.envio.estado }}</h5>
+                <p class="card-text">Fecha de Envío: {{ orden.envio.fecha_envio|date:"d/m/Y H:i" }}</p>
+                <p class="card-text">Fecha de Entrega: {{ orden.envio.fecha_entrega|date:"d/m/Y H:i" }}</p>
+                <h5>Detalles de la Orden:</h5>
+                <ul>
+                    {% for detalle in orden.detalles.all %}
+                    <li>{{ detalle.producto.nombre }} - Cantidad: {{ detalle.cantidad }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
 </div>
