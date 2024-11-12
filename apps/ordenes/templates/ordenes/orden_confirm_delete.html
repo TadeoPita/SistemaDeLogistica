@@ -1,0 +1,17 @@
+<!-- orden_confirm_delete.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Orden{% endblock %}
+
+{% block content %}
+<div class="container py-6">
+    <h2 class="text-2xl font-semibold mb-4">Eliminar Orden</h2>
+    <p>¿Estás seguro de que deseas eliminar la orden <strong>{{ orden }}</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirmar Eliminación</button>
+        <a href="{% url 'orden_detail' orden.pk %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

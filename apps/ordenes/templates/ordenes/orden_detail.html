@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle de la Orden{% endblock %}
+
+{% block content %}
+<div class="container py-6">
+    <h2 class="text-2xl font-semibold mb-4">Detalle de la Orden</h2>
+
+    <div class="card">
+        <div class="card-body">
+            <h3 class="text-xl font-semibold mb-2">Información de la Orden</h3>
+            <p><strong>ID:</strong> {{ orden.id }}</p>
+            <p><strong>Cliente:</strong> {{ orden.cliente.nombre }} {{ orden.cliente.apellido }}</p>
+            <p><strong>Fecha:</strong> {{ orden.fecha_creacion|date:"d/m/Y H:i" }}</p>
+            <p><strong>Estado:</strong> {{ orden.estado }}</p>
+            <p><strong>Código de Seguimiento:</strong> {{ orden.codigo_seguimiento }}</p>
+
+            <h3 class="text-xl font-semibold mt-6 mb-2">Detalles de la Orden</h3>
+            <p>Número de detalles: {{ orden.detalleorden_set.count }}</p>
+            <table class="min-w-full divide-y divide-gray-200 mb-4">
+                <thead>
+                    <tr>
+                        <th class="px-6 py-3 text-start text-sm text-default-500">Producto</th>
+                        <th class="px-6 py-3 text-start text-sm text-default-500">Cantidad</th>
+                        <th class="px-6 py-3 text-start text-sm text-default-500">Precio</th>
+                        <th class="px-6 py-3 text-start text-sm text-default-500">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    {% if orden.detalleorden_set.all %}
+                        {% for detalle in orden.detalleorden_set.all %}
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4">
+                                {{ detalle.producto.nombre }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ detalle.cantidad }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ detalle.precio_final }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ detalle.subtotal }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="4" class="px-6 py-4 text-sm text-center text-default-800">
+                            No hay detalles para esta orden.
+                        </td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+
+            <div class="mt-6">
+                <a href="{% url 'orden_edit' orden.pk %}" class="btn btn-primary">Editar</a>
+                <a href="{% url 'orden_delete' orden.pk %}" class="btn btn-danger">Eliminar</a>
+                <a href="{% url 'orden_list' %}" class="btn btn-secondary">Volver a la lista</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

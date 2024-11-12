@@ -1,0 +1,130 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Dashboard{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Tailwind Admin Dashboard, A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}">
+
+    <!-- Jsvectormap plugin css -->
+    <link href="{% static 'assets/libs/jsvectormap/css/jsvectormap.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- Icons css (Mandatory in All Pages) -->
+    <link href="{% static 'assets/css/icons.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- App css (Mandatory in All Pages) -->
+    <link href="{% static 'assets/css/app.min.css' %}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <div class="flex min-h-screen">
+
+        <!-- Sidebar -->
+        <aside id="app-menu"
+        
+            class="w-64 lg:w-64 bg-body overflow-y-auto transition-all duration-300 lg:block relative lg:sticky lg:top-0">
+            <div class="sticky top-0 flex h-16 items-center justify-center px-6">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'assets/images/logo-dark.png' %}" alt="logo" class="h-10">
+                </a>
+            </div>
+
+            <div class="p-4 lg:pl-8" data-simplebar>
+                <ul class="admin-menu hs-accordion-group flex flex-col gap-1.5">
+                    <li class="menu-item">
+                        <a href="{% url 'home' %}"
+                            class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium
+                                   {% if request.resolver_match.url_name == 'home' %}
+                                   text-default-700 bg-default-900/5
+                                   {% else %}
+                                   text-default-700 hover:bg-default-900/5
+                                   {% endif %}">
+                            <i data-lucide="home" class="size-5"></i>
+                            Inicio
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="{% url 'cliente_list' %}"
+                            class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5 hs-accordion-active:bg-default-900/5">
+                            <i data-lucide="file-text" class="size-5"></i>
+                            <span class="menu-text"> Clientes </span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="{% url 'producto_list' %}"
+                            class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5">
+                            <i data-lucide="component" class="size-5"></i>
+                            <span class="menu-text"> Productos </span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="{% url 'orden_list' %}"
+                            class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5">
+                            <i data-lucide="notebook-pen" class="size-5"></i>
+                            <span class="menu-text"> Ordenes </span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="{% url 'envio_list' %}"
+                            class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5">
+                            <i data-lucide="map" class="size-5"></i>
+                            <span class="menu-text">Envios </span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="{% url 'seguimiento_form' %}"
+                            class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5">
+                            <i data-lucide="grid-3x3" class="size-5"></i>
+                            <span class="menu-text"> Seguimiento </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6 lg:ml-64 transition-all duration-300 bg-gray-50">
+            <div class=" mx-auto" id="bodyPrincipal">
+                {% block content %}
+                <!-- Contenido específico de cada página -->
+                {% endblock %}
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Plugin Js (Mandatory in All Pages) -->
+    <script src="{% static 'assets/libs/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/libs/preline/preline.js' %}"></script>
+    <script src="{% static 'assets/libs/simplebar/simplebar.min.js' %}"></script>
+    <script src="{% static 'assets/libs/lucide/umd/lucide.min.js' %}"></script>
+    <script src="{% static 'assets/libs/iconify-icon/iconify-icon.min.js' %}"></script>
+    <script src="{% static 'assets/libs/node-waves/waves.min.js' %}"></script>
+
+    <!-- App Js (Mandatory in All Pages) -->
+    <script src="{% static 'assets/js/app.js' %}"></script>
+
+    <!-- Apexcharts js -->
+    <script src="{% static 'assets/libs/apexcharts/apexcharts.min.js' %}"></script>
+
+    <!-- Vector Map Js -->
+    <script src="{% static 'assets/libs/jsvectormap/js/jsvectormap.min.js' %}"></script>
+
+    <!-- Dashboard Project Page js -->
+    <script src="{% static 'assets/js/pages/dashboard.js' %}"></script>
+
+</body>
+
+</html>

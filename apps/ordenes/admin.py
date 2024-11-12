@@ -9,7 +9,7 @@ class DetalleOrdenInline(admin.TabularInline):
 @admin.register(Orden)
 class OrdenAdmin(admin.ModelAdmin):
     list_display = ('id', 'cliente', 'fecha_creacion', 'estado', 'codigo_seguimiento')
-    search_fields = ('id', 'cliente__nombre', 'cliente__apellido', 'codigo_seguimiento')
+    search_fields = ['id', 'cliente__nombre', 'cliente__apellido', 'codigo_seguimiento']
     list_filter = ('estado', 'fecha_creacion')
     ordering = ('-fecha_creacion',)
     inlines = [DetalleOrdenInline]
@@ -19,9 +19,10 @@ class OrdenAdmin(admin.ModelAdmin):
 
 @admin.register(DetalleOrden)
 class DetalleOrdenAdmin(admin.ModelAdmin):
-    list_display = ('orden', 'producto', 'cantidad', 'precio_unitario')
-    search_fields = ('orden__id', 'producto__nombre')
+    list_display = ('orden', 'producto', 'cantidad', 'precio_final')
+
     list_filter = ('producto',)
     ordering = ('orden',)
     autocomplete_fields = ('orden', 'producto')
     list_per_page = 25
+

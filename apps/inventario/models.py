@@ -15,6 +15,7 @@ class Producto(models.Model):
     sku = models.CharField(max_length=50, unique=True)
     stock = models.IntegerField()
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
+    precio = models.DecimalField(null=True, max_digits=15, decimal_places=0)
 
     def __str__(self):
         return self.nombre

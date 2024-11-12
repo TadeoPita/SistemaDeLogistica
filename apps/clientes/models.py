@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from empresa_logistica.settings import DATABASES
+
 
 class Direccion(models.Model):
     PROVINCIAS = [

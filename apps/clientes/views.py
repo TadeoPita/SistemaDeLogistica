@@ -2,13 +2,19 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import Cliente, Direccion
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView
 
-# Vistas para Cliente
+class HomeView(LoginRequiredMixin, TemplateView):
+    template_name = 'home.html'
+    login_url = '/login/' 
+
 
 class ClienteListView(LoginRequiredMixin, ListView):
     model = Cliente
     template_name = 'clientes/cliente_list.html'
-    context_object_name = 'clientes'
+    context_object_name = 'clientes' 
 
 class ClienteDetailView(LoginRequiredMixin, DetailView):
     model = Cliente

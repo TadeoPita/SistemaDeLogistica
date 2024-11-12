@@ -1,5 +1,5 @@
 from django.db import models
-from ordenes.models import Orden
+from apps.ordenes.models import Orden
 
 class Envio(models.Model):
     ESTADOS = [

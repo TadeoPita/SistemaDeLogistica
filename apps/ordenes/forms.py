@@ -10,7 +10,7 @@ class OrdenForm(forms.ModelForm):
 DetalleOrdenFormSet = inlineformset_factory(
     Orden,
     DetalleOrden,
-    fields=('producto', 'cantidad', 'precio_unitario'),
+    fields=('producto', 'cantidad', 'precio_final'),
     extra=1,
     can_delete=True
 )

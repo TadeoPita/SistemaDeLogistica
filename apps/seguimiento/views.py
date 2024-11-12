@@ -1,7 +1,6 @@
 from django.views.generic import FormView, DetailView
-from django.urls import reverse_lazy
 from .forms import SeguimientoForm
-from ordenes.models import Orden
+from apps.ordenes.models import Orden
 from django.shortcuts import get_object_or_404, redirect
 
 class SeguimientoFormView(FormView):
