@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 
-class HomeView(LoginRequiredMixin, TemplateView):
+class HomeView(TemplateView):
     template_name = 'home.html'
     login_url = '/login/' 
 

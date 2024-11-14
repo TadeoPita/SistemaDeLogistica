@@ -3,32 +3,40 @@
 {% block title %}Lista de Envíos{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2>Envíos</h2>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Orden</th>
-                <th>Estado</th>
-                <th>Fecha de Envío</th>
-                <th>Fecha de Entrega</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for envio in envios %}
-            <tr>
-                <td>{{ envio.orden.id }}</td>
-                <td>{{ envio.estado }}</td>
-                <td>{{ envio.fecha_envio|date:"d/m/Y H:i" }}</td>
-                <td>{{ envio.fecha_entrega|date:"d/m/Y H:i" }}</td>
-                <td>
-                    <a href="{% url 'envio_detail' envio.pk %}" class="btn btn-info btn-sm">Ver</a>
-                    <a href="{% url 'envio_update' envio.pk %}" class="btn btn-warning btn-sm">Editar</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container py-6">
+    <h2 class="text-2xl font-semibold mb-4">Envíos</h2>
+    <div class="mb-4 flex justify-end">
+        <a href="{% url 'envio_create' %}" class="btn btn-primary">Nuevo Envío</a>
+    </div>
+    <div class="card shadow-md">
+        <div class="card-body">
+            <table class="min-w-full divide-y divide-gray-200 table-auto">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Orden</th>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Estado</th>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Fecha de Envío</th>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Fecha de Entrega</th>
+                        <th class="px-6 py-3 text-right text-sm font-medium text-gray-700">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    {% for envio in envios %}
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4">{{ envio.orden.id }}</td>
+                        <td class="px-6 py-4">{{ envio.estado }}</td>
+                        <td class="px-6 py-4">{{ envio.fecha_envio|date:"d/m/Y H:i" }}</td>
+                        <td class="px-6 py-4">{{ envio.fecha_entrega|date:"d/m/Y H:i" }}</td>
+                        <td class="px-6 py-4 text-right">
+                            <a href="{% url 'envio_detail' envio.pk %}" class="btn btn-info btn-sm mr-2">Ver</a>
+                            <a href="{% url 'envio_update' envio.pk %}" class="btn btn-warning btn-sm mr-2">Editar</a>
+                            <a href="{% url 'envio_delete' envio.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 {% endblock %}

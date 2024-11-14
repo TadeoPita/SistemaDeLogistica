@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle de Empresa{% endblock %}
+
+{% block content %}
+<div class="container py-6">
+    <h2 class="text-2xl font-semibold mb-4">Detalle de Empresa</h2>
+    <div class="card">
+        <div class="card-body">
+            <p><strong>Nombre:</strong> {{ empresa.nombre }}</p>
+            <p><strong>Contacto:</strong> {{ empresa.contacto }}</p>
+            <p><strong>Email:</strong> {{ empresa.email }}</p>
+            <p><strong>Teléfono:</strong> {{ empresa.telefono }}</p>
+        </div>
+    </div>
+    <div class="mt-4">
+        <a href="{% url 'empresa_update' empresa.pk %}" class="btn btn-primary">Editar</a>
+        <a href="{% url 'empresa_list' %}" class="btn btn-secondary">Volver a la Lista</a>
+    </div>
+</div>
+{% endblock %}

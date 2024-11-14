@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Empresas{% endblock %}
+
+{% block content %}
+<div class="container py-6">
+    <h2 class="text-2xl font-semibold mb-4">Empresas</h2>
+    <div class="mb-4">
+        <a href="{% url 'empresa_create' %}" class="btn btn-primary">Agregar Empresa</a>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead>
+                    <tr>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Nombre</th>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Contacto</th>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Email</th>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Teléfono</th>
+                        <th class="px-6 py-3 text-right text-sm font-medium text-gray-500">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    {% for empresa in empresas %}
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4">{{ empresa.nombre }}</td>
+                        <td class="px-6 py-4">{{ empresa.contacto }}</td>
+                        <td class="px-6 py-4">{{ empresa.email }}</td>
+                        <td class="px-6 py-4">{{ empresa.telefono }}</td>
+                        <td class="px-6 py-4 text-right">
+                            <a href="{% url 'empresa_detail' empresa.pk %}" class="text-indigo-800 hover:text-indigo-900">Ver</a> |
+                            <a href="{% url 'empresa_update' empresa.pk %}" class="text-green-600 hover:text-greeb-900">Editar</a> |
+                            <a href="{% url 'empresa_delete' empresa.pk %}" class="text-red-600 hover:text-red-900">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

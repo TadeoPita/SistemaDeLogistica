@@ -3,34 +3,40 @@
 {% block title %}Lista de Productos{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2>Productos</h2>
-    <a href="{% url 'producto_create' %}" class="btn btn-primary mb-3">Nuevo Producto</a>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>SKU</th>
-                <th>Stock</th>
-                <th>Empresa</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for producto in productos %}
-            <tr>
-                <td>{{ producto.nombre }}</td>
-                <td>{{ producto.sku }}</td>
-                <td>{{ producto.stock }}</td>
-                <td>{{ producto.empresa.nombre }}</td>
-                <td>
-                    <a href="{% url 'producto_detail' producto.pk %}" class="btn btn-info btn-sm">Ver</a>
-                    <a href="{% url 'producto_update' producto.pk %}" class="btn btn-warning btn-sm">Editar</a>
-                    <a href="{% url 'producto_delete' producto.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container py-6">
+    <h2 class="text-2xl font-semibold mb-4">Productos</h2>
+    <div class="mb-4">
+        <a href="{% url 'producto_create' %}" class="btn btn-primary">Agregar Producto</a>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead>
+                    <tr>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Nombre</th>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">SKU</th>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Stock</th>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Empresa</th>
+                        <th class="px-6 py-3 text-right text-sm font-medium text-gray-500">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    {% for producto in productos %}
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4">{{ producto.nombre }}</td>
+                        <td class="px-6 py-4">{{ producto.sku }}</td>
+                        <td class="px-6 py-4">{{ producto.stock }}</td>
+                        <td class="px-6 py-4">{{ producto.empresa.nombre }}</td>
+                        <td class="px-6 py-4 text-right">
+                            <a href="{% url 'producto_detail' producto.pk %}" class="text-indigo-600 hover:text-indigo-900">Ver</a> |
+                            <a href="{% url 'producto_update' producto.pk %}" class="text-green-600 hover:text-indigo-900">Editar</a> |
+                            <a href="{% url 'producto_delete' producto.pk %}" class="text-red-600 hover:text-red-900">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 {% endblock %}

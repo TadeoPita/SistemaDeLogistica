@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle de Envío{% endblock %}
+
+{% block content %}
+<div class="container py-6">
+    <h2 class="text-2xl font-semibold mb-4">Detalle de Envío</h2>
+    <div class="card shadow-md p-6 bg-white">
+        <div class="card-body">
+            <p><strong>Orden:</strong> {{ envio.orden.id }}</p>
+            <p><strong>Estado:</strong> {{ envio.estado }}</p>
+            <p><strong>Fecha de Envío:</strong> {{ envio.fecha_envio|date:"d/m/Y H:i" }}</p>
+            <p><strong>Fecha de Entrega:</strong> {{ envio.fecha_entrega|date:"d/m/Y H:i" }}</p>
+        </div>
+    </div>
+    <div class="mt-6 flex justify-end space-x-3">
+        <a href="{% url 'envio_update' envio.pk %}" class="btn btn-primary">Editar</a>
+        <a href="{% url 'envio_list' %}" class="btn btn-secondary">Volver a la Lista</a>
+    </div>
+</div>
+{% endblock %}
