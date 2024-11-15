@@ -1373,7 +1373,7 @@ label {
 	content: "";
 	position: absolute;
 	left: -25px;
-	top: 0;
+	top: 2px;
 	width: 0;
 	height: 0;
 	border-style: solid;
@@ -4965,3 +4965,76 @@ blockquote.classic-blockquote-post::after {
     background-position: center;
     background-size: cover;
     position: relative;}
+
+	
+/* General wrapper to center content */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f3f4f6;
+    margin: 0;
+}
+
+/* Login box styles */
+.login-box {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Title style */
+.login-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+}
+
+/* Form styles */
+.login-form input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #4b5563;
+    outline: none;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.login-form input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.2);
+}
+
+/* Submit button styles */
+.btn-submit {
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+    width: 100%;
+}
+
+.btn-submit:hover {
+    background-color: #2563eb;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .login-box {
+        padding: 1.5rem;
+    }
+}

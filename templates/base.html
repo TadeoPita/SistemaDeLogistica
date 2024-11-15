@@ -9,8 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Tailwind Admin Dashboard, A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
 
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}">
 
     <!-- Jsvectormap plugin css -->
     <link href="{% static 'assets/libs/jsvectormap/css/jsvectormap.min.css' %}" rel="stylesheet" type="text/css">
@@ -28,7 +26,6 @@
 
         <!-- Sidebar -->
         <aside id="app-menu"
-        
             class="w-64 lg:w-64 bg-body overflow-y-auto transition-all duration-300 lg:block relative lg:sticky lg:top-0">
             <div class="sticky top-0 flex h-16 items-center justify-center px-6">
                 <a href="{% url 'home' %}">
@@ -47,7 +44,7 @@
                                    text-default-700 hover:bg-default-900/5
                                    {% endif %}">
                             <i data-lucide="home" class="size-5"></i>
-                            Inicio
+                            Sitio
                         </a>
                     </li>
 
@@ -58,7 +55,16 @@
                             <span class="menu-text"> Clientes </span>
                         </a>
                     </li>
-                    
+
+                    <li class="menu-item">
+                        <a href="{% url 'direccion_list' %}"
+                            class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5">
+                            <i data-lucide="map-pin" class="size-5"></i>
+                            <span class="menu-text"> Direcciones </span>
+                        </a>
+                    </li>
+
+
                     <li class="menu-item">
                         <a href="{% url 'empresa_list' %}"
                             class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5">
@@ -91,6 +97,7 @@
                         </a>
                     </li>
 
+
                     <li class="menu-item">
                         <a href="{% url 'seguimiento_form' %}"
                             class="group flex items-center gap-x-4 rounded-md px-3 py-2 text-sm font-medium text-default-700 transition-all hover:bg-default-900/5">
@@ -104,7 +111,7 @@
 
         <!-- Main Content -->
         <main class="flex-1 p-6 lg:ml-64 transition-all duration-300 bg-gray-50">
-            <div class=" mx-auto" id="bodyPrincipal">
+            <div class="mx-auto" id="bodyPrincipal">
                 {% block content %}
                 <!-- Contenido específico de cada página -->
                 {% endblock %}

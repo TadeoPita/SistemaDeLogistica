@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle de la Dirección{% endblock %}
+
+{% block content %}
+<div class="container py-6">
+    <h2 class="text-2xl font-semibold mb-4">Detalle de la Dirección</h2>
+    <div class="card shadow-md rounded-lg overflow-hidden">
+        <div class="card-body p-6 bg-gray-50">
+            <table class="min-w-full divide-y divide-gray-200 table-auto">
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                        <td class="px-6 py-4 font-medium text-gray-700">Calle:</td>
+                        <td class="px-6 py-4 text-gray-900">{{ direccion.calle }}</td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 font-medium text-gray-700">Número:</td>
+                        <td class="px-6 py-4 text-gray-900">{{ direccion.numero }}</td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 font-medium text-gray-700">Departamento:</td>
+                        <td class="px-6 py-4 text-gray-900">{{ direccion.departamento }}</td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 font-medium text-gray-700">Ciudad:</td>
+                        <td class="px-6 py-4 text-gray-900">{{ direccion.ciudad }}</td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 font-medium text-gray-700">Provincia:</td>
+                        <td class="px-6 py-4 text-gray-900">{{ direccion.provincia }}</td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 font-medium text-gray-700">Código Postal:</td>
+                        <td class="px-6 py-4 text-gray-900">{{ direccion.codigo_postal }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="mt-6 flex justify-end space-x-3">
+                <a href="{% url 'direccion_update' direccion.pk %}" class="btn btn-warning">Editar</a>
+                <a href="{% url 'direccion_list' %}" class="btn btn-secondary">Volver a la Lista</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
