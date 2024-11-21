@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from .models import Orden, DetalleOrden
 from .forms import OrdenForm, DetalleOrdenFormSet
 
+
 class OrdenListView(LoginRequiredMixin, ListView):
     model = Orden
     template_name = 'ordenes/orden_list.html'
@@ -34,7 +35,7 @@ class OrdenCreateView(LoginRequiredMixin, CreateView):
         context = self.get_context_data()
         detalles = context['detalles']
         with transaction.atomic():
-            form.instance.created_by = self.request.user  # Optional: adjust if using user tracking
+            form.instance.created_by = self.request.user 
             self.object = form.save()
             if detalles.is_valid():
                 detalles.instance = self.object
@@ -43,9 +44,6 @@ class OrdenCreateView(LoginRequiredMixin, CreateView):
                 return self.form_invalid(form)
         return super().form_valid(form)
 
-import logging
-
-logger = logging.getLogger(__name__)
 
 class OrdenUpdateView(LoginRequiredMixin, UpdateView):
     model = Orden
@@ -70,15 +68,8 @@ class OrdenUpdateView(LoginRequiredMixin, UpdateView):
                 detalles.instance = self.object
                 detalles.save()
             else:
-                logger.error("DetalleOrdenFormSet errors: %s", detalles.errors)  # Log de errores
                 return self.form_invalid(form)
         return super().form_valid(form)
-
-    def form_invalid(self, form):
-        logger.error("OrdenForm errors: %s", form.errors)  # Log de errores en el formulario principal
-        context = self.get_context_data()
-        context['form'] = form
-        return self.render_to_response(context)
 
 
 

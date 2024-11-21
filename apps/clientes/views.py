@@ -1,5 +1,3 @@
-# views.py
-
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Cliente, Direccion
 from django.urls import reverse_lazy

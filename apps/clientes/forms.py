@@ -1,14 +1,11 @@
-# forms.py
-
 from django import forms
 from .models import Cliente, Direccion
 
 class ClienteForm(forms.ModelForm):
-   
     calle = forms.CharField(max_length=255)
     numero = forms.CharField(max_length=10)
     departamento = forms.CharField(max_length=10, required=False)
-    ciudad = forms.CharField(max_length=100)
+    ciudad = forms.ChoiceField(choices=Direccion.CIUDADES)
     provincia = forms.ChoiceField(choices=Direccion.PROVINCIAS)
     codigo_postal = forms.CharField(max_length=10)
 

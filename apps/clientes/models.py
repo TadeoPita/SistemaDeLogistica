@@ -74,15 +74,8 @@ class Cliente(models.Model):
     email = models.EmailField(unique=True)
     telefono = models.CharField(max_length=20)
     dni = models.CharField(max_length=20, unique=True)
-    direccion = models.ForeignKey(
-        Direccion,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='clientes'
+    direccion = models.ForeignKey(Direccion,on_delete=models.SET_NULL, null=True, blank=True, related_name='clientes'
     )
-    usuario = models.OneToOneField(
-        User, on_delete=models.CASCADE, null=True, blank=True)
-
+    
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
