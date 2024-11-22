@@ -32,14 +32,14 @@ class ClienteCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         # Primero, creamos la dirección
         direccion = Direccion.objects.create(
-            calle=form.cleaned_data['calle'],
+            calle=form.cleaned_data['calle'], 
             numero=form.cleaned_data['numero'],
             departamento=form.cleaned_data.get('departamento', ''),
             ciudad=form.cleaned_data['ciudad'],
             provincia=form.cleaned_data['provincia'],
             codigo_postal=form.cleaned_data['codigo_postal']
         )
-        # Luego, asignamos la dirección al cliente y lo guardamos
+        # despues, asignamos la dirección al cliente y lo guardamos
         cliente = form.save(commit=False)
         cliente.direccion = direccion
         cliente.save()
@@ -97,7 +97,7 @@ class ClienteDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'clientes/cliente_confirm_delete.html'
     success_url = reverse_lazy('cliente_list')
 
-# Vistas para Dirección (si las necesitas)
+# Vistas para Dirección  
 
 class DireccionListView(LoginRequiredMixin, ListView):
     model = Direccion
