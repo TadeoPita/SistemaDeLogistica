@@ -55,9 +55,9 @@
             </table>
 
             <div class="mt-6">
-                <a href="{% url 'orden_edit' orden.pk %}" class="btn btn-primary">Editar</a>
-                <a href="{% url 'orden_delete' orden.pk %}" class="btn btn-danger">Eliminar</a>
-                <a href="{% url 'orden_list' %}" class="btn btn-secondary">Volver a la lista</a>
+                <a href="{% url 'orden_update' orden.pk %}" class="text-green-600 hover:text-green-800">Editar</a>
+                <a href="{% url 'orden_delete' orden.pk %}" class="btn btn-danger text-red-600">Eliminar</a>
+                <a href="{% url 'orden_list' %}" class="btn btn-secondary ">Volver a la lista</a>
             </div>
         </div>
     </div>

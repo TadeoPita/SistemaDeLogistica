@@ -3,34 +3,54 @@
 {% block title %}Lista de Productos{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2>Productos</h2>
-    <a href="{% url 'producto_create' %}" class="btn btn-primary mb-3">Nuevo Producto</a>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>SKU</th>
-                <th>Stock</th>
-                <th>Empresa</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for producto in productos %}
-            <tr>
-                <td>{{ producto.nombre }}</td>
-                <td>{{ producto.sku }}</td>
-                <td>{{ producto.stock }}</td>
-                <td>{{ producto.empresa.nombre }}</td>
-                <td>
-                    <a href="{% url 'producto_detail' producto.pk %}" class="btn btn-info btn-sm">Ver</a>
-                    <a href="{% url 'producto_update' producto.pk %}" class="btn btn-warning btn-sm">Editar</a>
-                    <a href="{% url 'producto_delete' producto.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container py-6">
+    <h2 class="text-2xl font-semibold mb-4">Productos</h2>
+    <a href="{% url 'producto_create' %}" class="btn btn-primary mb-4 text-blue-600">Agregar Producto</a>
+
+    <div class="card overflow-hidden">
+        <div class="card-header flex justify-between items-center bg-gray-100 p-4">
+            <h4 class="card-title text-lg font-semibold">Lista de Productos</h4>
+        </div>
+        <div class="p-4">
+            <div class="overflow-x-auto">
+                <div class="min-w-full inline-block align-middle">
+                    <div class="border rounded-lg shadow overflow-hidden">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr class="divide-x divide-gray-200">
+                                    <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500">Nombre</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500">SKU</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500">Stock</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-gray-500">Empresa</th>
+                                    <th scope="col" class="px-6 py-3 text-right text-sm font-medium text-gray-500">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                {% for producto in productos %}
+                                <tr class="hover:bg-gray-100">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ producto.nombre }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ producto.sku }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ producto.stock }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ producto.empresa.nombre }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="{% url 'producto_detail' producto.pk %}" class="text-blue-600 hover:text-blue-800">Ver</a> |
+                                        <a href="{% url 'producto_update' producto.pk %}" class="text-green-600 hover:text-green-800">Editar</a> |
+                                        <a href="{% url 'producto_delete' producto.pk %}" class="text-red-600 hover:text-red-800">Eliminar</a>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-700">
+                                        No hay productos disponibles.
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

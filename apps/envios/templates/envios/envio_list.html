@@ -3,32 +3,74 @@
 {% block title %}Lista de Envíos{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2>Envíos</h2>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Orden</th>
-                <th>Estado</th>
-                <th>Fecha de Envío</th>
-                <th>Fecha de Entrega</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for envio in envios %}
-            <tr>
-                <td>{{ envio.orden.id }}</td>
-                <td>{{ envio.estado }}</td>
-                <td>{{ envio.fecha_envio|date:"d/m/Y H:i" }}</td>
-                <td>{{ envio.fecha_entrega|date:"d/m/Y H:i" }}</td>
-                <td>
-                    <a href="{% url 'envio_detail' envio.pk %}" class="btn btn-info btn-sm">Ver</a>
-                    <a href="{% url 'envio_update' envio.pk %}" class="btn btn-warning btn-sm">Editar</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container py-6">
+    <h2 class="text-2xl font-semibold mb-4">Envíos</h2>
+    <a href="{% url 'envio_create' %}" class="btn btn-primary mb-4 text-blue-600">Nuevo Envío</a>
+
+    <!-- Tabla de Envíos -->
+    <div class="card overflow-hidden">
+        <div class="card-header flex justify-between items-center bg-gray-100 p-4">
+            <h4 class="card-title text-lg font-semibold">Lista de Envíos</h4>
+        </div>
+        <div class="p-4">
+            <div class="overflow-x-auto">
+                <div class="min-w-full inline-block align-middle">
+                    <div class="border rounded-lg shadow overflow-hidden">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr class="divide-x divide-gray-200">
+                                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Orden</th>
+                                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Estado</th>
+                                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Fecha de Envío</th>
+                                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Fecha de Entrega</th>
+                                    <th class="px-6 py-3 text-right text-sm font-medium text-gray-500">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                {% for envio in envios %}
+                                <tr class="hover:bg-gray-100">
+                                    <td class="px-6 py-4">{{ envio.orden.id }}</td>
+                                    <td class="px-6 py-4">{{ envio.estado }}</td>
+                                    <td class="px-6 py-4">{{ envio.fecha_envio|date:"d/m/Y H:i" }}</td>
+                                    <td class="px-6 py-4">{{ envio.fecha_entrega|date:"d/m/Y H:i" }}</td>
+                                    <td class="px-6 py-4 text-right">
+                                        <a href="{% url 'envio_detail' envio.pk %}" class="text-blue-600 hover:text-blue-800">Ver</a> |
+                                        <a href="{% url 'envio_update' envio.pk %}" class="text-green-600 hover:text-green-800">Editar</a> |
+                                        <a href="{% url 'envio_delete' envio.pk %}" class="text-red-600 hover:text-red-800">Eliminar</a>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-700">
+                                        No hay envíos disponibles.
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+ <!-- Calendario -->
+ <div id="calendar" class="mb-8"></div>
+
+<!-- Scripts de FullCalendar -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'es',
+        timeZone: 'local', 
+        events: '{% url "envio_events" %}',
+    });
+    calendar.render();
+});
+
+</script>
 {% endblock %}

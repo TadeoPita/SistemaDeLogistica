@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container py-6">
     <h2 class="text-2xl font-semibold mb-4">Órdenes</h2>
-    <a href="{% url 'orden_create' %}" class="btn btn-primary mb-4">Nueva Orden</a>
+    <a href="{% url 'orden_create' %}" class="btn btn-primary mb-4 text-blue-600">Nueva Orden</a>
 
     <div class="card overflow-hidden">
         <div class="card-header flex justify-between items-center bg-gray-100 p-4">
@@ -47,7 +47,8 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <a href="{% url 'orden_detail' orden.pk %}" class="text-blue-600 hover:text-blue-800">Ver</a>
                                         |
-                                        <a href="{% url 'orden_edit' orden.pk %}" class="text-green-600 hover:text-green-800">Editar</a>
+                                        <a href="{% url 'orden_update' orden.pk %}" class="text-green-600 hover:text-green-800">Editar</a>
+
                                         |
                                         <a href="{% url 'orden_delete' orden.pk %}" class="text-red-600 hover:text-red-800">Eliminar</a>
                                     </td>

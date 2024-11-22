@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Dirección{% endblock %}
+
+{% block content %}
+<div class="container py-6">
+    <h2 class="text-2xl font-semibold mb-4">Editar Dirección</h2>
+    <div class="card shadow-md rounded-lg overflow-hidden">
+        <div class="card-body p-6 bg-gray-50">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="mt-6 flex justify-end space-x-3">
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    <a href="{% url 'direccion_list' %}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,8 +1,11 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db import transaction
+from django.shortcuts import redirect
 from .models import Orden, DetalleOrden
 from .forms import OrdenForm, DetalleOrdenFormSet
+
 
 class OrdenListView(LoginRequiredMixin, ListView):
     model = Orden
@@ -23,28 +26,24 @@ class OrdenCreateView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
         if self.request.POST:
-            # Cargar el formset con los datos POST para el guardado
             data['detalles'] = DetalleOrdenFormSet(self.request.POST)
         else:
-            # Crear un formset con un formulario extra para permitir agregar un producto
             data['detalles'] = DetalleOrdenFormSet(queryset=DetalleOrden.objects.none())
         return data
 
     def form_valid(self, form):
         context = self.get_context_data()
         detalles = context['detalles']
-        
-        # Guardar la orden principal
-        self.object = form.save()
-
-        # Guardar detalles de la orden si el formset es válido 
-        if detalles.is_valid():
-            detalles.instance = self.object
-            detalles.save()
-        else:
-            return self.form_invalid(form)
-
+        with transaction.atomic():
+            form.instance.created_by = self.request.user 
+            self.object = form.save()
+            if detalles.is_valid():
+                detalles.instance = self.object
+                detalles.save()
+            else:
+                return self.form_invalid(form)
         return super().form_valid(form)
+
 
 class OrdenUpdateView(LoginRequiredMixin, UpdateView):
     model = Orden
@@ -57,25 +56,22 @@ class OrdenUpdateView(LoginRequiredMixin, UpdateView):
         if self.request.POST:
             data['detalles'] = DetalleOrdenFormSet(self.request.POST, instance=self.object)
         else:
-            # Al editar, mostrar los productos ya existentes
             data['detalles'] = DetalleOrdenFormSet(instance=self.object)
         return data
 
     def form_valid(self, form):
         context = self.get_context_data()
         detalles = context['detalles']
-        
-        # Guardar la orden principal
-        self.object = form.save()
-        
-        # Guardar detalles de la orden si el formset es válido
-        if detalles.is_valid():
-            detalles.instance = self.object
-            detalles.save()
-        else:
-            return self.form_invalid(form)
-
+        with transaction.atomic():
+            self.object = form.save()
+            if detalles.is_valid():
+                detalles.instance = self.object
+                detalles.save()
+            else:
+                return self.form_invalid(form)
         return super().form_valid(form)
+
+
 
 class OrdenDeleteView(LoginRequiredMixin, DeleteView):
     model = Orden

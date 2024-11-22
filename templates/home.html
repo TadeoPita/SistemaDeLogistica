@@ -1,10 +1,143 @@
-{% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Inicio{% endblock %}
+<!doctype html>
+<html class="no-js" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}Ltweb logistica{% endblock %}</title>
+    <meta name="description" content="Soluciones integrales de logística y transporte a nivel mundial.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-{% block content %}
-<div class="container py-6">
-    <h1>Bienvenido a la página de inicio</h1>
-    <!-- Aquí puedes agregar más contenido específico de la página de inicio -->
-</div>
-{% endblock %}
+
+    <!-- CSS aquí -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/default.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles2.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+</head>
+<body>
+
+    <!-- Inicio de la cabecera -->
+    <header>
+        <div id="header-sticky" class="main-header transparent-header">
+            <div class="container-fluid header-container-p">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="logo">
+                            <a href="{% url 'home' %}"><img style="width: 190px; height: 150px; margin: 0px;" src="{% static 'assets/images/logo/logo.png' %}" class="mobile-logo logo-sticky-none" alt="Logo"></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-6 d-none d-md-block">
+                        <div class="menu-area">
+                            <div class="main-menu">
+                                <nav id="mobile-menu">
+                                    <ul>
+                                        <li><a href="{% url 'login' %}">Inicio de Sesión</a></li>
+                                        <li><a href="{% url 'seguimiento_form' %}">Seguimiento de Envío</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mobile-menu"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Fin de la cabecera -->
+
+    <!-- Área de inicio -->
+    <main>
+        
+
+
+        
+<!-- slider-area -->
+<section class="s-slider-area">
+    <div class="s-slider-bg fix" style="    background-image: url(../img/slider/slider_img03.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="s-slider-content text-center">
+                        <h6><span class="dots"></span>Logistica de envio<span class="dots2"></span></h6>
+
+                        <h2 class="frame-1"><span>Delivery</span> </h2>
+                        <h2 class="frame-2"><span>TP </span> </h2>
+                        <h2 class="frame-3"><span>Backend</span></h2>
+                        <h2 class="frame-4"><span>2024</span> </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="" class="icon-scroll">
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        <div class="slider-golve">
+            <img src="{% static 'assets/images/slider/golve.png' %}" class="rotateme" alt="">
+        </div>
+        <div class="slider-golve-bike">
+            <img src="{% static 'assets/images/slider/bike.png' %}" alt="">
+        </div>
+        <div class="slide-golve-car">
+            <img src="{% static 'assets/images/slider/car.png' %}" alt="">
+        </div>
+        <div class="slider-plane">
+            <img src="{% static 'assets/images/slider/plane.png' %}" alt="">
+        </div>
+    </div>
+</section>
+<!-- slider-area-end -->
+
+        <!-- Información General de Servicios -->
+        <section class="services-area delivery-bg pt-110 pb-90">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-7 col-lg-10">
+                        <div class="s-section-title text-center mb-60">
+                            <h2>Seguimiento de Envíos</h2>
+                            <p>Consulta el estado de tu envío y verifica las fechas de entrega estimadas con nuestro sistema de seguimiento en tiempo real.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Fin de Información General de Servicios -->
+    </main>
+    <!-- Fin Área de Inicio -->
+
+    <!-- Pie de página -->
+   
+    <!-- Scripts JS -->
+
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/js/slick.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.meanmenu.min.js' %}"></script>
+    <script src="{% static 'assets/js/ajax-form.js' %}"></script>
+    <script src="{% static 'assets/js/wow.min.js' %}"></script>
+    <script src="{% static 'assets/js/aos.js' %}"></script>
+    <script src="{% static 'assets/js/paroller.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.scrollUp.min.js' %}"></script>
+    <script src="{% static 'assets/js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+</html>

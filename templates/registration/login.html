@@ -1,12 +1,16 @@
-{% extends 'base.html' %}
-
-{% block title %}Iniciar Sesión{% endblock %}
+{% load static %}
 
 {% block content %}
-<h2>Iniciar Sesión</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Ingresar</button>
-</form>
+<div class="login-wrapper">
+    <div class="login-box">
+        <h2 class="login-title text-center">Iniciar Sesión</h2>
+        <form method="post" class="login-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-submit">Ingresar</button>
+        </form>
+    </div>
+</div>
+
+<link rel="stylesheet" href="{% static 'assets/css/styles2.css' %}">
 {% endblock %}
